@@ -1,0 +1,3 @@
+class FreebankPayment::Request
+
+end
