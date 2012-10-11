@@ -18,7 +18,7 @@ class FreebankPayment::Request
     }
     result[:pay_hash] = Digest::SHA1.hexdigest(result[:pay_amount] + result[:pay_order] + result[:pay_goal] +
                                                    result[:pay_success_url] + result[:pay_fail_url] +
-                                                   result[:pay_result_url] + result[:Provider] + secret_key)
+                                                   result[:pay_result_url] + result[:Provider] + secret_key).upcase
     result
   end
 

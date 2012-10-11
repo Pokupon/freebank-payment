@@ -184,6 +184,6 @@ describe FreebankPayment::Request do
     request.pay_result_url = 'http://example.com/'
     request.provider = '1234567890'
     request.secret_key = '1234'
-    request.params[:pay_hash].should == '72b0cf3466e8e06ded9201b04f81795452f0169a'
+    request.params[:pay_hash].should == '72B0CF3466E8E06DED9201B04F81795452F0169A'
   end
 end

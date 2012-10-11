@@ -24,7 +24,7 @@ describe FreebankPayment::CallbackResponse do
           :pay_bankid => '567890',
           :pay_datetime => '31.12.2000 10:00',
           :pay_test => '1',
-          :pay_hash => 'd227f4689d792ca9003cefb3d7e471be4a012feb'
+          :pay_hash => 'D227F4689D792CA9003CEFB3D7E471BE4A012FEB'
       }
       response = FreebankPayment::CallbackResponse.new 'secret', params
       response.valid?.should be_true

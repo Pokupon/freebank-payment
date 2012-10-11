@@ -15,7 +15,7 @@ class FreebankPayment::CallbackResponse
 
   def valid?
     concat_str = [pay_amount, pay_order, pay_goal, pay_bankid, pay_datetime, pay_test, @secret_key].reduce('') { |result, element| result + (element || '') }
-    expected_pay_hash = Digest::SHA1.hexdigest concat_str
+    expected_pay_hash = Digest::SHA1.hexdigest(concat_str).upcase
     expected_pay_hash == @pay_hash
   end
 end
