@@ -1,5 +1,4 @@
 require 'uri'
-require 'digest/sha1'
 
 class FreebankPayment::Request
 
@@ -46,9 +45,5 @@ class FreebankPayment::Request
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
   rescue URI::InvalidURIError
     false
-  end
-
-  def hashify
-
   end
 end
