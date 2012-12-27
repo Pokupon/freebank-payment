@@ -2,7 +2,7 @@ require 'uri'
 
 class FreebankPayment::Request
 
-  attr_accessor :pay_amount, :pay_order, :pay_goal, :pay_success_url, :pay_fail_url, :pay_result_url, :provider
+  attr_accessor :pay_amount, :pay_order, :pay_goal, :pay_success_url, :pay_fail_url, :pay_result_url, :pay_discountcart, :provider
   attr_accessor :secret_key
 
   def params
@@ -14,11 +14,12 @@ class FreebankPayment::Request
         :pay_success_url => pay_success_url,
         :pay_fail_url => pay_fail_url,
         :pay_result_url => pay_result_url,
+        :pay_discountcart => pay_discountcart,
         :Provider => provider
     }
     result[:pay_hash] = Digest::SHA1.hexdigest(result[:pay_amount] + result[:pay_order] + result[:pay_goal] +
                                                    result[:pay_success_url] + result[:pay_fail_url] +
-                                                   result[:pay_result_url] + result[:Provider] + secret_key).upcase
+                                                   result[:pay_result_url] + result[:pay_discountcart] + result[:Provider] + secret_key).upcase
     result
   end
 
@@ -36,6 +37,7 @@ class FreebankPayment::Request
     raise Exception.new('pay_fail_url is invalid') unless valid_url?(pay_fail_url)
     raise Exception.new('pay_result_url is required') if pay_result_url.nil? || pay_result_url.empty?
     raise Exception.new('pay_result_url is invalid') unless valid_url?(pay_result_url)
+    raise Exception.new('pay_discountcart is required') if pay_discountcart.nil?
     raise Exception.new('provider is required') if provider.nil? || provider.empty?
     raise Exception.new('secret_key is required') if secret_key.nil? || secret_key.empty?
   end
